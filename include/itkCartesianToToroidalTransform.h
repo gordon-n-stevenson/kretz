@@ -17,14 +17,15 @@
 namespace itk
 {
 
-/** \brief Cartesian to Toroidal transformation.
+/** \brief Toroidal transformation of a vector space (e.g. space coordinates).
  *
- * Transforms three coordinates from Cartesian coordinates (x, y, z) to toroidal space <alpha,radius>. 
- * These are used in transforming the output of 3D ultrasound volumes from display back into scanline.
+ * Transforms three coordinates form toroidal space <alpha,radius> to cartesian
+ * coordinates. These are used in trnasfomring the output of 3D ultrasound volumes 
  *
- * \f[			\theta = sin^{-1}( \frac{x}{b} ) \f]
- * \f[			r = \sqrt{ x^2 + (d - \frac{y}{sin( \phi )} ) } \f]
- * \f[			\phi = -tan^{-1}( \frac{y}{z-d} ) \f] 
+ * \f[			x = r \times sin( \theta ) \f]
+ * \f[			y = -sin( \phi ) \times  (r cos( \theta ) -d) \f]
+ * \f[			z = d \times (1-cos( \phi ) ) + r \times cos( \theta ) \times cos( \phi ) \f]
+ *
  *
  * where;
  *
