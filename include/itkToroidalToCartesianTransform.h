@@ -17,15 +17,14 @@
 namespace itk
 {
 
-/** \brief Toroidal transformation of a vector space (e.g. space coordinates).
+/** \brief Toroidal to Cartesian transformation.
  *
  * Transforms three coordinates form toroidal space <alpha,radius> to cartesian
- * coordinates. These are used in trnasfomring the output of 3D ultrasound volumes 
+ * coordinates. These are used in transforming scanline data into display output of 3D ultrasound volumes 
  *
- * \f[			r = \sqrt{ x^2 + (d - \frac{y}{sin( \phi )} ) } \f]
- * \f[			\phi = -tan^{-1}( \frac{y}{z-d} ) \f]
- * \f[			\theta = sin^{-1}( \frac{x}{b} ) \f]
- *
+ * \f[			x = r \times sin( \theta ) \f]
+ * \f[			y = -sin( \phi ) \times  (r cos( \theta ) -d) \f]
+ * \f[			z = d \times (1-cos( \phi ) ) + r \times cos( \theta ) \times cos( \phi ) \f]
  *
  * where;
  *
@@ -44,6 +43,7 @@ namespace itk
  *
  * \ingroup Transforms
  */
+
 template <
         class TScalarType=double,          // Data type for scalars (float or double)
         unsigned int NDimensions=3>        // Number of dimensions
